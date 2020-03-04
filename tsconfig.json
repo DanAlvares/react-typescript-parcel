@@ -6,7 +6,6 @@
     "jsx": "react",
     "rootDir": "./src",
     "esModuleInterop": true,
-    "incremental": true,
     "experimentalDecorators": true,
     "lib": [
       "dom",
