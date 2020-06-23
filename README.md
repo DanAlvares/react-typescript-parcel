@@ -6,9 +6,16 @@ This repository is a basic setup of a react (16.10.x) application in Typescript,
     $ git clone https://github.com/DanAlvares/react-typescript-parcel.git
     $ cd react-typescript-parcel
     $ npm i
+
+### Firebase
+
+Rename `.env-example` to `.env`  
+Replace empty strings in `.env` file with config from Firebase project
+
     $ npm start
 
-Browse to `localhost:1234`
+Browse to `localhost:1234`  
+_The starter app includes auth demos as well as GETTING, ADDING & DELETING data_
 
 ## Git - Initial Setup
     $ rm -rf .git
