@@ -15,7 +15,7 @@
     "Prettier"
   ],
   "scripts": {
-    "dev": "parcel ./src/index.html",
+    "dev": "parcel ./src/index.html NODE_ENV=development",
     "start": "concurrently -r \"npm:ts:watch\" \"npm:dev\"",
     "build": "npm run ts && parcel build ./src/index.html --public-url '/'",
     "prettify": "prettier --write './src/**/*.{ts,tsx}'",
@@ -24,12 +24,14 @@
     "ts:watch": "tsc --noEmit --watch"
   },
   "dependencies": {
+    "firebase": "^7.15.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^4.2.3",
     "@testing-library/react": "^9.5.0",
+    "@types/firebase": "^3.2.1",
     "@types/jest": "^24.9.1",
     "@types/node": "^11.15.16",
     "@types/react": "^16.9.38",
