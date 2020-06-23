@@ -1,11 +1,7 @@
 import React from 'react'
 
 export const App = () => (
-  <div>
-    <div>✔ React</div>
-    <div>✔ Typescript</div>
-    <div>✔ Prettier</div>
-    <div>✔ Parcel</div>
-    <div>✔ Jest</div>
+  <div className="text-center">
+    <h1>React - TypeScript - Parcel</h1>
   </div>
 )
