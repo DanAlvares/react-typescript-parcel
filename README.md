@@ -1,4 +1,4 @@
-# React - Typescript - Parcel seed project
+# React - Typescript - Parcel starter project (ft. FIREBASE)
 
 This repository is a basic setup of a react (16.10.x) application in Typescript, using Parcel to bundle. It uses Prettier and tslint-config-prettier for formatting and linting. Tests are configured using Jest and [react-testing-library](https://github.com/kentcdodds/react-testing-library) 
 
