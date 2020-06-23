@@ -39,7 +39,6 @@ const Login = ({ history }: any) => {
       .then(res => (res.user as any).providerData)
       .then(res => {
         console.log('guest login', res)
-        history.push('/')
       })
       .catch(error => alert(error))
   }
