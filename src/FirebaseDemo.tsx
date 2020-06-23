@@ -1,19 +1,21 @@
 import React from 'react'
-import app from './firebase'
-import firebase from 'firebase/app'
+import firebase from './firebase'
+import app from 'firebase/app'
+import 'firebase/firestore'
+import { doc } from 'prettier'
 
 const styles = {
   margin: '20px auto',
   maxWidth: '90%',
   padding: '20px',
-  width: '420px',
+  width: '475px',
 }
 
-const Login = ({ history }: any) => {
+const FirebaseDemo = () => {
   const emailLogin = (event: any) => {
     const { email, password } = event.target.elements
 
-    app
+    firebase
       .auth()
       .signInWithEmailAndPassword(email.value, password.value)
       .then((res: any) => (res.user as any).providerData)
@@ -21,10 +23,11 @@ const Login = ({ history }: any) => {
   }
 
   const googleLogin = () => {
-    const provider = new firebase.auth.GoogleAuthProvider()
+    const provider = new app.auth.GoogleAuthProvider()
     provider.addScope('profile')
     provider.addScope('email')
-    app
+
+    firebase
       .auth()
       .signInWithPopup(provider)
       .then(result => {
@@ -33,7 +36,7 @@ const Login = ({ history }: any) => {
   }
 
   const guestLogin = () => {
-    app
+    firebase
       .auth()
       .signInAnonymously()
       .then(res => (res.user as any).providerData)
@@ -44,8 +47,8 @@ const Login = ({ history }: any) => {
   }
 
   const githubLogin = () => {
-    const provider = new firebase.auth.GithubAuthProvider()
-    app
+    const provider = new app.auth.GithubAuthProvider()
+    firebase
       .auth()
       .signInWithPopup(provider)
       .then(result => {
@@ -54,13 +57,55 @@ const Login = ({ history }: any) => {
   }
 
   const facebookLogin = () => {
-    const provider = new firebase.auth.FacebookAuthProvider()
-    app
+    const provider = new app.auth.FacebookAuthProvider()
+    firebase
       .auth()
       .signInWithPopup(provider)
       .then(result => {
         console.log('facebook login', result)
       })
+  }
+
+  const addItem = () => {
+    firebase
+      .firestore()
+      .collection('teams')
+      .doc('BSK')
+      .set({ name: 'Basingstoke' })
+      .then(res => console.log('res', res))
+      .catch(err => console.log('err', err))
+  }
+
+  const getItems = () => {
+    firebase
+      .firestore()
+      .collection('teams')
+      .get(/* { source: 'cache' } */)
+      .then(res => res.docs.map(doc => ({ ...doc.data(), id: doc.id })))
+      .then(docs => console.log(docs))
+      .catch(err => console.log('err', err))
+  }
+
+  const deleteItem = () => {
+    firebase
+      .firestore()
+      .collection('teams')
+      .doc("Jz1yF3KzydnUDeaMuy0v")
+      .delete()
+      // .then(res => res.docs.map(doc => doc.data()))
+      .then(doc => console.log('doc', doc))
+      .catch(err => console.log('err', err))
+  }
+
+  const getItem = () => {
+    firebase
+      .firestore()
+      .collection('teams')
+      .doc('BSK')
+      .get()
+      // .then(res => res.docs.map(doc => doc.data()))
+      .then(doc => console.log('doc', doc.data()))
+      .catch(err => console.log('err', err))
   }
 
   return (
@@ -92,8 +137,14 @@ const Login = ({ history }: any) => {
       <button onClick={guestLogin} className="btn btn-primary btn-block">
         Log in as guest
       </button>
+      <div className="row" style={{ marginTop: '10px' }}>
+        <div className="col-3"><button onClick={getItems} className="btn btn-link btn-block">Get All</button></div>
+        <div className="col-3"><button onClick={getItem} className="btn btn-link btn-block">Get One</button></div>
+        <div className="col-3"><button onClick={addItem} className="btn btn-link btn-block">Add</button></div>
+        <div className="col-3"><button onClick={deleteItem} className="btn btn-link btn-block">DELETE</button></div>
+      </div>
     </div>
   )
 }
 
-export default Login
+export default FirebaseDemo
