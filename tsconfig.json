@@ -11,5 +11,8 @@
       "dom",
       "es2015"
     ]
-  }
+  },
+  "include": [
+    "index.d.ts"
+  ]
 }
