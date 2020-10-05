@@ -3,14 +3,9 @@
   "name": "Parcel",
   "icons": [
     {
-      "src": "/assets/icons/icon_128.png",
+      "src": "/assets/icons/icon_96.png",
       "type": "image/png",
-      "sizes": "128x128"
-    },
-    {
-      "src": "/assets/icons/icon_152.png",
-      "type": "image/png",
-      "sizes": "152x152"
+      "sizes": "96x96"
     },
     {
       "src": "/assets/icons/icon_144.png",
