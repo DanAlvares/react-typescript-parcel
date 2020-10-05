@@ -1,7 +1,5 @@
 import React from 'react'
 import firebase from './firebase'
-import app from 'firebase/app'
-import 'firebase/firestore'
 
 const styles = {
   margin: '20px auto',
@@ -22,14 +20,14 @@ const FirebaseDemo = () => {
   }
 
   const googleLogin = () => {
-    const provider = new app.auth.GoogleAuthProvider()
+    const provider = new firebase.app.auth.GoogleAuthProvider()
     provider.addScope('profile')
     provider.addScope('email')
 
     firebase
       .auth()
       .signInWithPopup(provider)
-      .then(result => {
+      .then((result: any) => {
         console.log('google login', result)
       })
   }
@@ -38,29 +36,29 @@ const FirebaseDemo = () => {
     firebase
       .auth()
       .signInAnonymously()
-      .then(res => (res.user as any).providerData)
-      .then(res => {
+      .then((res: { user: any }) => (res.user as any).providerData)
+      .then((res: any) => {
         console.log('guest login', res)
       })
-      .catch(error => alert(error))
+      .catch((error: any) => alert(error))
   }
 
   const githubLogin = () => {
-    const provider = new app.auth.GithubAuthProvider()
+    const provider = new firebase.app.auth.GithubAuthProvider()
     firebase
       .auth()
       .signInWithPopup(provider)
-      .then(result => {
+      .then((result: any) => {
         console.log('github login', result)
       })
   }
 
   const facebookLogin = () => {
-    const provider = new app.auth.FacebookAuthProvider()
+    const provider = new firebase.app.auth.FacebookAuthProvider()
     firebase
       .auth()
       .signInWithPopup(provider)
-      .then(result => {
+      .then((result: any) => {
         console.log('facebook login', result)
       })
   }
@@ -71,8 +69,8 @@ const FirebaseDemo = () => {
       .collection('teams')
       .doc('BSK')
       .set({ name: 'Basingstoke' })
-      .then(res => console.log('res', res))
-      .catch(err => console.log('err', err))
+      .then((res: any) => console.log('res', res))
+      .catch((err: any) => console.log('err', err))
   }
 
   const getItems = () => {
@@ -80,9 +78,9 @@ const FirebaseDemo = () => {
       .firestore()
       .collection('teams')
       .get(/* { source: 'cache' } */)
-      .then(res => res.docs.map(doc => ({ ...doc.data(), id: doc.id })))
-      .then(docs => console.log(docs))
-      .catch(err => console.log('err', err))
+      .then((res: { docs: any[] }) => res.docs.map((doc: { data: () => any; id: any }) => ({ ...doc.data(), id: doc.id })))
+      .then((docs: any) => console.log(docs))
+      .catch((err: any) => console.log('err', err))
   }
 
   const deleteItem = () => {
@@ -92,8 +90,8 @@ const FirebaseDemo = () => {
       .doc("Jz1yF3KzydnUDeaMuy0v")
       .delete()
       // .then(res => res.docs.map(doc => doc.data()))
-      .then(doc => console.log('doc', doc))
-      .catch(err => console.log('err', err))
+      .then((doc: any) => console.log('doc', doc))
+      .catch((err: any) => console.log('err', err))
   }
 
   const getItem = () => {
@@ -103,8 +101,8 @@ const FirebaseDemo = () => {
       .doc('BSK')
       .get()
       // .then(res => res.docs.map(doc => doc.data()))
-      .then(doc => console.log('doc', doc.data()))
-      .catch(err => console.log('err', err))
+      .then((doc: { data: () => any }) => console.log('doc', doc.data()))
+      .catch((err: any) => console.log('err', err))
   }
 
   return (

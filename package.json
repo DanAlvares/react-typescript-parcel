@@ -24,7 +24,7 @@
     "ts:watch": "tsc --noEmit --watch"
   },
   "dependencies": {
-    "firebase": "^7.15.4",
+    "firebase": "^7.22.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },

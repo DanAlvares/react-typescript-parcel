@@ -2,7 +2,7 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/database'
 
-const app = firebase.initializeApp({
+firebase.initializeApp({
   apiKey: process.env.FIREBASE_KEY,
   authDomain: process.env.FIREBASE_DOMAIN,
   databaseURL: process.env.FIREBASE_DATABASE,
@@ -12,4 +12,4 @@ const app = firebase.initializeApp({
   appId: process.env.FIREBASE_APP_ID,
 })
 
-export default app
+export default firebase
