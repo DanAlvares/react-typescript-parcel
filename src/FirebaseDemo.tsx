@@ -78,7 +78,12 @@ const FirebaseDemo = () => {
       .firestore()
       .collection('teams')
       .get(/* { source: 'cache' } */)
-      .then((res: { docs: any[] }) => res.docs.map((doc: { data: () => any; id: any }) => ({ ...doc.data(), id: doc.id })))
+      .then((res: { docs: any[] }) =>
+        res.docs.map((doc: { data: () => any; id: any }) => ({
+          ...doc.data(),
+          id: doc.id,
+        }))
+      )
       .then((docs: any) => console.log(docs))
       .catch((err: any) => console.log('err', err))
   }
@@ -87,7 +92,7 @@ const FirebaseDemo = () => {
     firebase
       .firestore()
       .collection('teams')
-      .doc("Jz1yF3KzydnUDeaMuy0v")
+      .doc('Jz1yF3KzydnUDeaMuy0v')
       .delete()
       // .then(res => res.docs.map(doc => doc.data()))
       .then((doc: any) => console.log('doc', doc))
@@ -135,10 +140,26 @@ const FirebaseDemo = () => {
         Log in as guest
       </button>
       <div className="row" style={{ marginTop: '10px' }}>
-        <div className="col-3"><button onClick={getItems} className="btn btn-link btn-block">Get All</button></div>
-        <div className="col-3"><button onClick={getItem} className="btn btn-link btn-block">Get One</button></div>
-        <div className="col-3"><button onClick={addItem} className="btn btn-link btn-block">Add</button></div>
-        <div className="col-3"><button onClick={deleteItem} className="btn btn-link btn-block">DELETE</button></div>
+        <div className="col-3">
+          <button onClick={getItems} className="btn btn-link btn-block">
+            Get All
+          </button>
+        </div>
+        <div className="col-3">
+          <button onClick={getItem} className="btn btn-link btn-block">
+            Get One
+          </button>
+        </div>
+        <div className="col-3">
+          <button onClick={addItem} className="btn btn-link btn-block">
+            Add
+          </button>
+        </div>
+        <div className="col-3">
+          <button onClick={deleteItem} className="btn btn-link btn-block">
+            DELETE
+          </button>
+        </div>
       </div>
     </div>
   )
